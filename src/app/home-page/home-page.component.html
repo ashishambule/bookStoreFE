@@ -1,0 +1,47 @@
+<div>
+  <div class="header">
+    <a href="#default" class="logo">Library App</a>
+    <div class="header-right">
+      <!-- <a class="active" href="#home">Home</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a> -->
+    </div>
+  </div>
+  <section class="container" *ngFor="let bname of books; let i = index">
+    <div class="one">
+      <div>
+        <img src="{{ bname.image_url }}" alt="Avatar" style="width: 15%;" />
+
+        <div *ngIf="!selectUser" class="two" style="float: right;">
+          <div>
+            <p>Book Name: {{ bname.title }}</p>
+            <p>Edition: {{ bname.edition }}</p>
+            <p>Genre: {{ bname.genre }}</p>
+            <!-- <p>Publication Name: {{ bname.publisher.publication_name }}</p>
+            <p>Publisher Email: {{ bname.publisher.email }}</p> -->
+          </div>
+        </div>
+
+        <h5>
+          <b>Title :{{ bname.title }}</b>
+        </h5>
+        <p>Price: ${{ bname.price }}</p>
+      </div>
+
+      <div>
+        <button class="buttonForBook" (click)="getBookDetails(bname.book_id)">
+          About Book
+        </button>
+        <button (click)="getAllUsers()">issue book</button>
+        <button>return book</button>
+      </div>
+    </div>
+  </section>
+  <div *ngIf="selectUser" class="two" style="float: right;">
+    <div *ngFor="let user of allUsers">
+      <ul>
+        <li (click)="getAllUsers()">{{ user.first_name }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
